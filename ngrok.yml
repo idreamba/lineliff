@@ -1,0 +1,10 @@
+authtoken: 1rcTHRxh4FFj7oibVTzo4Yu9eR7_hUkTWVdfAgFxqLCDEtyf
+tunnels:
+# ปลายทาง port 80
+  # api:
+  #   addr: 80
+  #   proto: http
+# ต้นทาง port 3000
+  web:
+    addr: 80
+    proto: http
