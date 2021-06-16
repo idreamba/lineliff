@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
   <title>My LIFF app</title>
   <link rel="stylesheet" href="css/style.css" media="all">
 </head>
+
 <body>
   <!-- getEnvironment -->
   <p id="os"><b>OS:</b> </p>
@@ -14,11 +16,13 @@
   <p id="isInClient"><b>isInClient:</b> </p>
   <p id="accessToken"><b>AccessToken:</b> </p>
 
-
+  <!-- getUserProfile -->
   <img id="pictureUrl">
   <p id="userId"><b>userId:</b> </p>
   <p id="displayName"><b>displayName:</b> </p>
   <p id="statusMessage"><b>statusMessage:</b> </p>
+
+
   <p id="decodedIDToken"><b>email:</b> </p>
   <p id="type"><b>type:</b> </p>
   <p id="viewType"><b>viewType:</b> </p>
@@ -78,7 +82,16 @@
     function getContext() {
     }
 
+    // เป็นข้อมูลแบบ promise ต้องรอข้อมูลก่อนถึงจะแสดงผลได้ ให้ใช้ async await
     async function getUserProfile() {
+
+      const profile = await liff.getProfile(); // ดึงข้อมูล promise ทั้งหมดก่อนด้วย await
+
+      document.getElementById("pictureUrl").src = profile.pictureUrl
+
+      document.getElementById("userId").append(profile.userId);
+      document.getElementById("displayName").append(profile.displayName)
+      document.getElementById("statusMessage").append(profile.statusMessage)
     }
 
     function getEnvironment() {
@@ -90,9 +103,9 @@
       document.getElementById("accessToken").append(liff.getAccessToken())
 
       //  ตรวจสอบว่า client ได้เล่นหน้าเว็บผ่าน line มั้ย ถ้าใช่ให้ซ่อนปุ่มที่ไม่ใช้
-      if(liff.isInClient()){
+      if (liff.isInClient()) {
         document.getElementById("btnLogOut").style.display = "none"
-      }else{
+      } else {
         document.getElementById("btnMsg").style.display = "none"
         document.getElementById("btnScanCode").style.display = "none"
         document.getElementById("btnClose").style.display = "none"
@@ -105,8 +118,8 @@
       //await liff.init({ liffId: "YOUR-LIFF-ID" })
 
       await liff.init({ liffId: "1656109866-7dZB0ERK" })
-       getEnvironment()
-      // getUserProfile()
+      getEnvironment()
+      getUserProfile()
       // getContext()
       // getFriendship()
       // createUniversalLink()
@@ -117,4 +130,5 @@
 
   </script>
 </body>
+
 </html>
