@@ -90,7 +90,7 @@
       document.getElementById("accessToken").append(liff.getAccessToken())
 
       //  ตรวจสอบว่า client ได้เล่นหน้าเว็บผ่าน line มั้ย ถ้าใช่ให้ซ่อนปุ่มที่ไม่ใช้
-      if(liff.isInClient){
+      if(liff.isInClient()){
         document.getElementById("btnLogOut").style.display = "none"
       }else{
         document.getElementById("btnMsg").style.display = "none"
