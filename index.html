@@ -23,11 +23,14 @@
   <p id="statusMessage"><b>statusMessage:</b> </p>
   <p id="decodedIDToken"><b>email:</b> </p>
 
+  <!-- getContext -->
   <p id="type"><b>type:</b> </p>
   <p id="viewType"><b>viewType:</b> </p>
   <p id="utouId"><b>utouId:</b> </p>
   <p id="roomId"><b>roomId:</b> </p>
   <p id="groupId"><b>groupId:</b> </p>
+
+
   <p id="friendship"><b>isFriendship:</b> </p>
   <p id="scanCode"><b>Code:</b> </p>
   <p id="isLoggedIn"><b>isLoggedIn:</b> </p>
@@ -79,6 +82,22 @@
     }
 
     function getContext() {
+
+      // <p id="type"><b>type:</b> </p>
+      // <p id="viewType"><b>viewType:</b> </p>
+      // <p id="utouId"><b>utouId:</b> </p>
+      // <p id="roomId"><b>roomId:</b> </p>
+      // <p id="groupId"><b>groupId:</b> </p>
+
+      document.getElementById("type").append(liff.getContext().type)
+      document.getElementById("viewType").append(liff.getContext().viewType)
+
+      // utouId แสดงค่า id จาก liff แบบ one to one
+      document.getElementById("utouId").append(liff.getContext().utouId)
+
+      document.getElementById("roomId").append(liff.getContext().roomId) // คุยจากห้องไลน์
+      document.getElementById("groupId").append(liff.getContext().groupId) // คุยจาก group id
+
     }
 
     // เป็นข้อมูลแบบ promise ต้องรอข้อมูลก่อนถึงจะแสดงผลได้ ให้ใช้ async await
@@ -91,6 +110,9 @@
       document.getElementById("userId").append(profile.userId);
       document.getElementById("displayName").append(profile.displayName)
       document.getElementById("statusMessage").append(profile.statusMessage)
+
+      // ดึงอีเมล ต้องอนุญาตใน Line Liff Basic setting / OpenID Connect / เปิดใช้งาน email, openid 
+      // แล้วไปที่เมนู LIFF > Scopes chat_message.write, openid, profile, email
       document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
     }
 
@@ -120,7 +142,8 @@
       await liff.init({ liffId: "1656109866-7dZB0ERK" })
       getEnvironment()
       getUserProfile()
-      // getContext()
+
+      getContext() // ไว้ใช้สำหรับดูบริบทที่มาของ user ว่าเปิด LIFF จากช่องทางใด เพื่อนำไปใช้ตรวจสอบและใช้งานต่อ
       // getFriendship()
       // createUniversalLink()
     }
