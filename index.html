@@ -21,9 +21,8 @@
   <p id="userId"><b>userId:</b> </p>
   <p id="displayName"><b>displayName:</b> </p>
   <p id="statusMessage"><b>statusMessage:</b> </p>
-
-
   <p id="decodedIDToken"><b>email:</b> </p>
+
   <p id="type"><b>type:</b> </p>
   <p id="viewType"><b>viewType:</b> </p>
   <p id="utouId"><b>utouId:</b> </p>
@@ -85,13 +84,14 @@
     // เป็นข้อมูลแบบ promise ต้องรอข้อมูลก่อนถึงจะแสดงผลได้ ให้ใช้ async await
     async function getUserProfile() {
 
-      const profile = await liff.getProfile(); // ดึงข้อมูล promise ทั้งหมดก่อนด้วย await
+      const profile = await liff.getProfile() // ดึงข้อมูล promise ทั้งหมดก่อนด้วย await
 
       document.getElementById("pictureUrl").src = profile.pictureUrl
 
       document.getElementById("userId").append(profile.userId);
       document.getElementById("displayName").append(profile.displayName)
       document.getElementById("statusMessage").append(profile.statusMessage)
+      document.getElementById("decodedIDToken").append(liff.decodedIDToken().email)
     }
 
     function getEnvironment() {
