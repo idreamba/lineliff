@@ -1,2 +1,0 @@
-# วิธี Run ngrok.yml
-ngrok start --all --region=jp --config ./ngrok.yml

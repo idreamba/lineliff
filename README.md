@@ -1,6 +1,9 @@
 # Building LIFF app into LINE
 Source code for LIFF v2 online course
 
+# วิธี Run ngrok.yml
+ngrok start --all --region=jp --config ./ngrok.yml
+
 ## Prerequisites
 * Create a provider and a channel on the [LINE Developers console](https://developers.line.biz/en/docs/liff/getting-started/#creating-a-provider-and-channel)
 * Adding a [LIFF app](https://developers.line.biz/en/docs/liff/registering-liff-apps/#registering-liff-app)
